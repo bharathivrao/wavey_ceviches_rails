@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title><%= content_for?(:title) ? yield(:title) : 'Wavey Ceviches' %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : 'Wavey Ceviches site' %>" />
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <%= yield :head if content_for?(:head) %>
+</head>
+<body>
+  <%= yield %>
+  <script>
+    (function() {
+      var y = document.getElementById("y");
+      if (y) y.textContent = new Date().getFullYear();
+    })();
+  </script>
+  <%= yield :scripts if content_for?(:scripts) %>
+</body>
+</html>

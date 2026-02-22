@@ -1,0 +1,171 @@
+<% content_for :title, "Menu | Wavey Ceviches" %>
+<% content_for :description, "Wavey Ceviches menu with original item names, descriptions, prices, and source images." %>
+<% content_for :head do %>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<%= stylesheet_link_tag 'pages_menu', media: 'all' %>
+<% end %>
+
+<%= render 'shared/site_header',
+  wrapper_class: 'nav',
+  actions_style: 'display:flex; gap:10px; align-items:center; flex-wrap:wrap;',
+  actions: [
+    { href: '/', label: 'Home' },
+    { href: '/online-ordering', label: 'Order online', variant: :primary }
+  ] %>
+
+<main>
+  <div class="wrap hero">
+    <div class="kicker"><i></i>Original menu data from waveyceviches.com/menus</div>
+    <h1>Wavey Menu</h1>
+    <p class="sub">Same item names, descriptions, prices, and source photos from the Wavey Ceviches menu page.</p>
+    <nav class="cats" aria-label="Menu categories">
+      <a href="#appetizers">Appetizers</a>
+      <a href="#ceviches">Ceviches</a>
+      <a href="#classics">Classic Dishes</a>
+      <a href="#kids">Kids Menu</a>
+      <a href="#dessert">Dessert</a>
+      <a href="#drinks">Drinks</a>
+    </nav>
+  </div>
+
+  <section id="appetizers">
+    <div class="wrap">
+      <div class="title"><h2>Appetizers</h2><p>Fresh starts and classic Peruvian bites.</p></div>
+      <div class="grid">
+        <article class="card">
+          <div class="img"><img alt="Papa a la Huancaina" src="https://static.wixstatic.com/media/3b5d82_7e7db20b10284d37b3bd36069f34c539~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_7e7db20b10284d37b3bd36069f34c539~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Papa a la Huancaina</h3><div class="price">$13.00</div></div><p>(Boiled potatoes covered in a Creamy Per(Jvian Yellow pepper and Cheese Sauce topped w/ Boiled Eggs)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><img alt="Anticuchos" src="https://static.wixstatic.com/media/3b5d82_ec8f8206c6bc4cea86eb7de55b4a4a8b~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_ec8f8206c6bc4cea86eb7de55b4a4a8b~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Anticuchos</h3><div class="price">$16.00</div></div><p>(Grilled marinated strips of beef heart served with boiled potatoes and our ajl sauce.)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><img alt="Leche de tigre" src="https://static.wixstatic.com/media/3b5d82_d247f04ec8b14f3584f5714e0f90b18f~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_d247f04ec8b14f3584f5714e0f90b18f~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Leche de tigre</h3><div class="price">$14.00</div></div><p>(Fish marinated in lime juice and yellow and red peppers and onions.)</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="ceviches">
+    <div class="wrap">
+      <div class="title"><h2>Ceviches</h2><p>Citrus-forward and made fresh.</p></div>
+      <div class="grid">
+        <article class="card">
+          <div class="img"><img alt="Ceviche clasico" src="https://static.wixstatic.com/media/3b5d82_786f0b37946841b19e4ee6f95f13f94d~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_786f0b37946841b19e4ee6f95f13f94d~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Ceviche clasico</h3><div class="price">$18.00</div></div><p>(Tilapia)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><img alt="Ceviche mixto" src="https://static.wixstatic.com/media/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Ceviche mixto</h3><div class="price">$27.00</div></div><p>(Tilapia, Shrimp and Seafood Mix)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><img alt="Ceviche de Camaron" src="https://static.wixstatic.com/media/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Ceviche de Camaron</h3><div class="price">$22.00</div></div><p>(Shrimp)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Ceviche de pescado</h3><div class="price">$19.00</div></div><p>(Tilapia)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Ceviche de mariscos</h3><div class="price">$23.00</div></div><p>(Seafood Mix)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Ceviche de manga</h3><div class="price">$16.00</div></div><p>(Mango, shrimp and seafood mix.)</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="classics">
+    <div class="wrap">
+      <div class="title"><h2>Classic Dishes</h2><p>Hearty comfort and wok-fired favorites.</p></div>
+      <div class="grid">
+        <article class="card">
+          <div class="img"><img alt="Lomo Saltado" src="https://static.wixstatic.com/media/3b5d82_ff5b7ba7363645f0b5e2339867205918~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_ff5b7ba7363645f0b5e2339867205918~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Lomo Saltado</h3><div class="price">$28</div></div><p>(Beef Tenderloin Stir Fried with Tomatoes. Onions and Fries)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Aji de Gallina</h3><div class="price">$17</div></div><p>(Shredded Chicken Breast in a creamy Yellow Pepper and Walnut Sauce.)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Pollada</h3><div class="price">$18</div></div><p>(Grilled chicken breast with rice, fries and salad.)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><img alt="Arroz Chaufa de Pollo" src="https://static.wixstatic.com/media/3b5d82_dc8496e228824632845115d2c611902d~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_dc8496e228824632845115d2c611902d~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Arroz Chaufa de Pollo</h3><div class="price">$22</div></div><p>(Peruvian Chicken Fried Rice)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Arroz Chaufa Mixto</h3><div class="price">$24</div></div><p>(Peruvian Seafood and Chicken Fried Rice)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Tallarin Verde con Bistec</h3><div class="price">$24</div></div><p>(Fettuccine with basil and spinach sauce topped with steak.)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Tallarin Saltado de Pollo</h3><div class="price">$20</div></div><p>(Chicken stir-fried noodles.)</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="kids">
+    <div class="wrap">
+      <div class="title"><h2>Kids Menu</h2><p>Simple plates for smaller appetites.</p></div>
+      <div class="grid">
+        <article class="card">
+          <div class="img"><img alt="Chicken with rice" src="https://static.wixstatic.com/media/3b5d82_02cdfdad2b17488ba4ad016c86e800d1~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_02cdfdad2b17488ba4ad016c86e800d1~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Chicken with rice</h3><div class="price">$10</div></div><p>(Chicken and rice.)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Fried Potatoes</h3><div class="price">$6</div></div><p>(French Fries.)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Ensalada de fruta</h3><div class="price">$8</div></div><p>(Fruit salad.)</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="dessert">
+    <div class="wrap">
+      <div class="title"><h2>Dessert</h2><p>Traditional sweets to finish.</p></div>
+      <div class="grid">
+        <article class="card">
+          <div class="img"><img alt="Alfajor" src="https://static.wixstatic.com/media/3b5d82_41f01ef7f8be40f595fcf3188dbbc89d~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_41f01ef7f8be40f595fcf3188dbbc89d~mv2.jpg"></div>
+          <div class="body"><div class="row"><h3>Alfajor</h3><div class="price">$6</div></div><p>(Cookie with creamy caramel filling.)</p></div>
+        </article>
+        <article class="card">
+          <div class="img"><div class="no-photo">Photo not listed on source menu</div></div>
+          <div class="body"><div class="row"><h3>Picarones</h3><div class="price">$9</div></div><p>(Peruvian sweet potato and squash donuts with sweet syrup.)</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="drinks">
+    <div class="wrap">
+      <div class="title"><h2>Drinks</h2><p>Traditional refreshers and sodas.</p></div>
+      <div class="grid">
+        <article class="card"><div class="img"><div class="no-photo">Photo not listed on source menu</div></div><div class="body"><div class="row"><h3>Chicha Morada</h3><div class="price">$7</div></div><p>(Corn punch.)</p></div></article>
+        <article class="card"><div class="img"><div class="no-photo">Photo not listed on source menu</div></div><div class="body"><div class="row"><h3>Inca Kola</h3><div class="price">$4</div></div><p>(Peruvian soda)</p></div></article>
+        <article class="card"><div class="img"><div class="no-photo">Photo not listed on source menu</div></div><div class="body"><div class="row"><h3>Maracuya</h3><div class="price">$7</div></div><p>(Passion fruit punch.)</p></div></article>
+        <article class="card"><div class="img"><div class="no-photo">Photo not listed on source menu</div></div><div class="body"><div class="row"><h3>Coca cola</h3><div class="price">$4</div></div><p>(Coca Cola)</p></div></article>
+        <article class="card"><div class="img"><div class="no-photo">Photo not listed on source menu</div></div><div class="body"><div class="row"><h3>Sprite</h3><div class="price">$4</div></div><p>(Sprite)</p></div></article>
+        <article class="card"><div class="img"><div class="no-photo">Photo not listed on source menu</div></div><div class="body"><div class="row"><h3>Diet coke</h3><div class="price">$4</div></div><p>(Diet Coca Cola)</p></div></article>
+        <article class="card"><div class="img"><div class="no-photo">Photo not listed on source menu</div></div><div class="body"><div class="row"><h3>Canada dry</h3><div class="price">$4</div></div><p>(Canada Dry)</p></div></article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%= render 'shared/site_footer' %>

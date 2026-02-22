@@ -1,0 +1,333 @@
+<% content_for :title, "Online Ordering | Wavey Ceviches" %>
+<% content_for :description, "Wavey Ceviches online ordering page with pickup, delivery, dine-in, and cart." %>
+<% content_for :head do %>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<%= stylesheet_link_tag 'pages_online_ordering', media: 'all' %>
+<% end %>
+
+<%= render 'shared/site_header',
+  wrapper_class: 'top',
+  actions_class: 'head-actions',
+  actions: [
+    { href: '/', label: 'Home' },
+    { href: '/menu', label: 'Menu' },
+    { href: '#checkout', label: 'View cart', variant: :primary }
+  ] %>
+
+<main>
+  <div class="wrap hero">
+    <h1>Online Ordering</h1>
+    <p class="sub">Browse menu items and choose what you’d like to order. Pickup, delivery, and dine-in modes are available.</p>
+
+    <div class="service-panel">
+      <div>
+        <div class="seg" role="tablist" aria-label="Service type">
+          <button class="active" data-service="Pickup">Pickup</button>
+          <button data-service="Delivery">Delivery</button>
+          <button data-service="Dine-In">Dine-In</button>
+        </div>
+        <div class="meta">
+          <div class="box">
+            <b>Service</b>
+            <span id="serviceType">Pickup</span>
+          </div>
+          <div class="box">
+            <b>Pickup Time</b>
+            <span>Up to 30 minutes</span>
+          </div>
+          <div class="box">
+            <b>Address</b>
+            <span>3700 Eglinton Avenue West, Mississauga ON L5M 2R9</span>
+          </div>
+          <div class="box">
+            <b>Min. order</b>
+            <span>C$0.00</span>
+          </div>
+        </div>
+      </div>
+      <div class="ready">
+        <b>Accepting Orders</b>
+        <p>Use category tabs to jump to dishes, then add items to cart and review totals before checkout.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap layout">
+    <div>
+      <div class="cats" id="catTabs" aria-label="Categories"></div>
+      <div id="sections"></div>
+    </div>
+
+    <aside class="cart" id="checkout">
+      <div class="cart-head">
+        <h3>Cart</h3>
+        <span class="count" id="cartCount">0 items</span>
+      </div>
+      <div class="cart-body" id="cartBody">
+        <div class="empty">Your cart is empty.</div>
+      </div>
+      <div class="totals">
+        <div class="line"><span>Subtotal</span><span id="subtotal">C$0.00</span></div>
+        <div class="line"><span>Tax (13%)</span><span id="tax">C$0.00</span></div>
+        <div class="line total"><span>Total</span><span id="total">C$0.00</span></div>
+        <button class="checkout" id="checkoutBtn" disabled>Place Order</button>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<% content_for :scripts do %>
+<script>
+  const menu = [
+    {
+      category: "Appetizers",
+      note: "This section is available for ordering.",
+      items: [
+        { id: "app-1", name: "Papa a la Huancaina", price: 13.00, desc: "(Boiled potatoes covered in a Creamy Per(Jvian Yellow pepper and Cheese Sauce topped w/ Boiled Eggs)", img: "https://static.wixstatic.com/media/3b5d82_7e7db20b10284d37b3bd36069f34c539~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_7e7db20b10284d37b3bd36069f34c539~mv2.jpg" },
+        { id: "app-2", name: "Yuquitas Fritas", price: 14.00, desc: "(Fried Casava)", img: "" },
+        { id: "app-3", name: "Empanada de Carne", price: 7.00, desc: "(Beef Empanada)", img: "" },
+        { id: "app-4", name: "Tamal de Pollo con Salsa Criolla", price: 13.00, desc: "(Chicken Tamales with Salsalsa Criolla)", img: "" },
+        { id: "app-5", name: "Tempura de Langostino", price: 12.00, desc: "(Shrimp Tempura)", img: "" },
+        { id: "app-6", name: "Tequeilos Huancainos (3)", price: 8.00, desc: "(3 Huancaina Cheese Sticks)", img: "" },
+        { id: "app-7", name: "Poutine a la Huancaina", price: 14.00, desc: "(French Fries and Cheese curds covered fn a creamy, Peruvian Yellow Pepper and Cheese Sauce)", img: "" }
+      ]
+    },
+    {
+      category: "CEVICHES",
+      note: "Fresh citrus-marinated specialties.",
+      items: [
+        { id: "cev-1", name: "Ceviche de Tilapia", price: 22.00, desc: "(Tilapia cured in Ume, Onions, Sweet potato, Peruvian Roasted Corn and Sweet Plantain)", img: "https://static.wixstatic.com/media/3b5d82_786f0b37946841b19e4ee6f95f13f94d~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_786f0b37946841b19e4ee6f95f13f94d~mv2.jpg" },
+        { id: "cev-2", name: "Tilapia + Camarones", price: 24.00, desc: "(Tilapia and Shrimps)", img: "" },
+        { id: "cev-3", name: "Ceviche de Camarones", price: 26.00, desc: "(Shrimp Ceviche)", img: "https://static.wixstatic.com/media/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg" },
+        { id: "cev-4", name: "Ceviche Mixto", price: 27.00, desc: "(Tilapia, Shrimp and Seafood Mix)", img: "https://static.wixstatic.com/media/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_102d891f423940a98fb372285fac4bd8~mv2.jpg" },
+        { id: "cev-5", name: "Canchita (VEG)", price: 15.00, desc: "(Roasted Corn)", img: "" },
+        { id: "cev-6", name: "Crispy Wavey", price: 22.00, desc: "(Roasted Corn)", img: "" },
+        { id: "cev-7", name: "Leche de Tigre", price: 16.00, desc: "(Refreshing creamy Lime-based marinade with chunks of tilapia, fried calamari and Peruvian roasted corn.)", img: "https://static.wixstatic.com/media/3b5d82_d247f04ec8b14f3584f5714e0f90b18f~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_d247f04ec8b14f3584f5714e0f90b18f~mv2.jpg" }
+      ]
+    },
+    {
+      category: "MAINS",
+      note: "Classic hearty plates.",
+      items: [
+        { id: "main-1", name: "Lomo Saltado", price: 28.00, desc: "(Beef Tenderloin Stir Fried with Tomatoes. Onions and Fries)", img: "https://static.wixstatic.com/media/3b5d82_ff5b7ba7363645f0b5e2339867205918~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_ff5b7ba7363645f0b5e2339867205918~mv2.jpg" },
+        { id: "main-2", name: "Pollo Saltado", price: 25.00, desc: "(Chicken stir fried with Tomatoes, Onions and Fries,)", img: "" },
+        { id: "main-3", name: "Aji de Gallina", price: 23.00, desc: "(Peruvian Chicken stew made with Peruvian Yellow Peppers and Parmesan Cheese)", img: "" },
+        { id: "main-4", name: "Jalea Mixta", price: 26.00, desc: "(Deep fried Seafood mix)", img: "" },
+        { id: "main-5", name: "Chicharron de Pescado", price: 23.00, desc: "(Crispy, Light, Golden-Brown Fried Fish Nuggets w/ Salsa Criofla served w/ Rice)", img: "" },
+        { id: "main-6", name: "Tallarines Verdes con Picanha", price: 28.00, desc: "(Peruvian Pesto Linguine w/Picanha)", img: "" },
+        { id: "main-7", name: "Tallarin Saltado de Carne", price: 28.00, desc: "(Linguine w/ Beef Tenderloin Stir-Fried)", img: "" },
+        { id: "main-8", name: "Tallarin Saltado de Pollo", price: 25.00, desc: "(Linguine w/ Chicken Stir Fried)", img: "" },
+        { id: "main-9", name: "Chicharron de Calamar + Ceviche", price: 27.00, desc: "(Fried Calamari w/ Ceviche)", img: "" },
+        { id: "main-10", name: "Pollito a la Brasa Bowl", price: 20.00, desc: "(Peruvian Rotisserie Sryie Chicken w/ Fries Bowl)", img: "" },
+        { id: "main-11", name: "Linguine Huancaina con Lome Saltado", price: 30.00, desc: "(Huancaina Linguine w/ Stir Fried Beef Tenderloin)", img: "" }
+      ]
+    },
+    {
+      category: "CHAUFAS",
+      note: "Peruvian-style fried rice dishes.",
+      items: [
+        { id: "ch-1", name: "Arroz Chaufa de Pollo", price: 22.00, desc: "(Peruvian Chicken Fried Rice)", img: "https://static.wixstatic.com/media/3b5d82_dc8496e228824632845115d2c611902d~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_dc8496e228824632845115d2c611902d~mv2.jpg" },
+        { id: "ch-2", name: "Arroz Chaufa de Pollo+ Camarones", price: 25.00, desc: "(Peruvian Chicken & Shrimp Fried Rice)", img: "" },
+        { id: "ch-3", name: "Arroz Chaufa de Chicharron de Pescado", price: 23.00, desc: "(Peruvian Fish Fried Rice)", img: "" },
+        { id: "ch-4", name: "Arroz Chaufa + Mariscos", price: 27.00, desc: "(Sea Food Mix Fried Rice)", img: "" }
+      ]
+    },
+    {
+      category: "KIDS MENU",
+      note: "Family-friendly options.",
+      items: [
+        { id: "kid-1", name: "Salchipapas", price: 13.00, desc: "(Hot dog & Fries)", img: "" },
+        { id: "kid-2", name: "Pollipapas", price: 15.00, desc: "(Chicken & Fries)", img: "" },
+        { id: "kid-3", name: "Chicharron de Pescado", price: 14.00, desc: "(Deep fried Fish)", img: "" }
+      ]
+    },
+    {
+      category: "SIDES",
+      note: "Add-ons and house sauces.",
+      items: [
+        { id: "side-1", name: "Fries", price: 6.00, desc: "", img: "" },
+        { id: "side-2", name: "White Rice", price: 6.00, desc: "", img: "" },
+        { id: "side-3", name: "Canchita", price: 6.00, desc: "", img: "" },
+        { id: "side-4", name: "Salsa Criolla", price: 6.00, desc: "", img: "" },
+        { id: "side-5", name: "Red Wavey Sauce", price: 1.00, desc: "", img: "" },
+        { id: "side-6", name: "Yellow Wavey Sauce", price: 1.00, desc: "", img: "" },
+        { id: "side-7", name: "Rocoto Carretillero", price: 1.00, desc: "", img: "" },
+        { id: "side-8", name: "Huancaina Sauce", price: 1.00, desc: "", img: "" }
+      ]
+    },
+    {
+      category: "Desserts",
+      note: "Sweet finishes.",
+      items: [
+        { id: "des-1", name: "Alfajor", price: 3.00, desc: "", img: "https://static.wixstatic.com/media/3b5d82_41f01ef7f8be40f595fcf3188dbbc89d~mv2.jpg/v1/fill/w_593,h_542,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/3b5d82_41f01ef7f8be40f595fcf3188dbbc89d~mv2.jpg" },
+        { id: "des-2", name: "Arroz con Leche", price: 6.50, desc: "", img: "" },
+        { id: "des-3", name: "Crema Volteada", price: 6.50, desc: "", img: "" }
+      ]
+    },
+    {
+      category: "DRINKS",
+      note: "Cold beverages and refreshers.",
+      items: [
+        { id: "dr-1", name: "Inca Kola Glass Bottle", price: 3.50, desc: "", img: "" },
+        { id: "dr-2", name: "Inca Kola Can", price: 2.50, desc: "", img: "" },
+        { id: "dr-3", name: "Inca Kola 2Lt Bottle", price: 6.50, desc: "", img: "" },
+        { id: "dr-4", name: "Chicha Morada / Maracuyá", price: 5.00, desc: "", img: "" },
+        { id: "dr-5", name: "Soft Drinks / Water", price: 1.50, desc: "", img: "" }
+      ]
+    },
+    {
+      category: "ALCOHOLIC BEVERAGES",
+      note: "Cocktails and beer.",
+      items: [
+        { id: "alc-1", name: "Chilcano", price: 13.00, desc: "", img: "" },
+        { id: "alc-2", name: "Pisco Sour", price: 14.00, desc: "", img: "" },
+        { id: "alc-3", name: "Maracuya Sour", price: 15.00, desc: "", img: "" },
+        { id: "alc-4", name: "Cerveza", price: 9.00, desc: "", img: "" }
+      ]
+    }
+  ];
+
+  const catTabs = document.getElementById("catTabs");
+  const sectionsRoot = document.getElementById("sections");
+  const cartBody = document.getElementById("cartBody");
+  const cartCount = document.getElementById("cartCount");
+  const subtotalEl = document.getElementById("subtotal");
+  const taxEl = document.getElementById("tax");
+  const totalEl = document.getElementById("total");
+  const checkoutBtn = document.getElementById("checkoutBtn");
+
+  const money = (v) => `C$${v.toFixed(2)}`;
+  const cart = new Map();
+
+  function renderTabs() {
+    catTabs.innerHTML = "";
+    menu.forEach((section, i) => {
+      const b = document.createElement("button");
+      b.textContent = section.category;
+      if (i === 0) b.classList.add("active");
+      b.addEventListener("click", () => {
+        document.querySelectorAll(".cats button").forEach((x) => x.classList.remove("active"));
+        b.classList.add("active");
+        document.getElementById(`sec-${i}`).scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      catTabs.appendChild(b);
+    });
+  }
+
+  function cardHTML(item) {
+    const imgPart = item.img
+      ? `<div class=\"img\"><img alt=\"${item.name}\" src=\"${item.img}\"></div>`
+      : `<div class=\"img\"><div class=\"no-photo\">Photo not listed on source menu</div></div>`;
+
+    return `
+      <article class="card">
+        ${imgPart}
+        <div class="body">
+          <div class="row"><h3>${item.name}</h3><div class="price">${money(item.price)}</div></div>
+          <p>${item.desc || ""}</p>
+          <button class="add" data-id="${item.id}">Add to cart</button>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderSections() {
+    sectionsRoot.innerHTML = menu
+      .map((sec, i) => `
+        <section id="sec-${i}">
+          <div class="title">
+            <h2>${sec.category}</h2>
+            <p>${sec.note}</p>
+          </div>
+          <div class="grid">
+            ${sec.items.map(cardHTML).join("")}
+          </div>
+        </section>
+      `)
+      .join("");
+
+    sectionsRoot.querySelectorAll("button.add").forEach((btn) => {
+      btn.addEventListener("click", () => addToCart(btn.dataset.id));
+    });
+  }
+
+  function getItemById(id) {
+    for (const sec of menu) {
+      const item = sec.items.find((x) => x.id === id);
+      if (item) return item;
+    }
+    return null;
+  }
+
+  function addToCart(id) {
+    if (!cart.has(id)) cart.set(id, { qty: 0 });
+    cart.get(id).qty += 1;
+    renderCart();
+  }
+
+  function changeQty(id, delta) {
+    if (!cart.has(id)) return;
+    const current = cart.get(id);
+    current.qty += delta;
+    if (current.qty <= 0) cart.delete(id);
+    renderCart();
+  }
+
+  function renderCart() {
+    let count = 0;
+    let subtotal = 0;
+    let html = "";
+
+    for (const [id, value] of cart.entries()) {
+      const item = getItemById(id);
+      if (!item) continue;
+      count += value.qty;
+      subtotal += item.price * value.qty;
+      html += `
+        <div class="item">
+          <div class="name">${item.name}</div>
+          <div class="meta">
+            <div>${money(item.price)}</div>
+            <div class="qty">
+              <button data-act="dec" data-id="${id}">-</button>
+              <span>${value.qty}</span>
+              <button data-act="inc" data-id="${id}">+</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    cartBody.innerHTML = html || `<div class="empty">Your cart is empty.</div>`;
+    cartCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
+
+    const tax = subtotal * 0.13;
+    const total = subtotal + tax;
+    subtotalEl.textContent = money(subtotal);
+    taxEl.textContent = money(tax);
+    totalEl.textContent = money(total);
+    checkoutBtn.disabled = count === 0;
+
+    cartBody.querySelectorAll(".qty button").forEach((b) => {
+      b.addEventListener("click", () => changeQty(b.dataset.id, b.dataset.act === "inc" ? 1 : -1));
+    });
+  }
+
+  document.querySelectorAll(".seg button").forEach((b) => {
+    b.addEventListener("click", () => {
+      document.querySelectorAll(".seg button").forEach((x) => x.classList.remove("active"));
+      b.classList.add("active");
+      document.getElementById("serviceType").textContent = b.dataset.service;
+    });
+  });
+
+  checkoutBtn.addEventListener("click", () => {
+    alert("Order flow connected. Hook this button to your payment/checkout endpoint.");
+  });
+
+  renderTabs();
+  renderSections();
+  renderCart();
+</script>
+
+<% end %>

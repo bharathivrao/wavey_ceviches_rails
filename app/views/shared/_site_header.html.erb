@@ -1,0 +1,31 @@
+<% wrapper_class = local_assigns.fetch(:wrapper_class, 'nav') %>
+<% middle_links = local_assigns.fetch(:middle_links, []) %>
+<% middle_class = local_assigns.fetch(:middle_class, 'links') %>
+<% actions = local_assigns.fetch(:actions, []) %>
+<% actions_class = local_assigns[:actions_class] %>
+<% actions_style = local_assigns[:actions_style] %>
+
+<header>
+  <div class="wrap <%= wrapper_class %>">
+    <a class="brand" href="/">
+      <%= render 'shared/brand' %>
+    </a>
+
+    <% if middle_links.any? %>
+      <div class="<%= middle_class %>">
+        <% middle_links.each do |link| %>
+          <a href="<%= link[:href] %>"><%= link[:label] %></a>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div<%= actions_class ? " class=\"#{actions_class}\"" : '' %><%= actions_style ? " style=\"#{actions_style}\"" : '' %>>
+      <% actions.each do |link| %>
+        <a class="btn<%= link[:variant] == :primary ? ' primary' : '' %>" href="<%= link[:href] %>">
+          <% if link[:icon] == :spark %><span class="spark"></span><% end %>
+          <%= link[:label] %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</header>

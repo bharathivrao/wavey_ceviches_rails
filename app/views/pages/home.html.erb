@@ -1,0 +1,119 @@
+<% content_for :title, "Wavey Ceviches | Peruvian Delights" %>
+<% content_for :description, "Wavey Ceviches — Peruvian Delights. Fresh ceviches, saltados, chaufas, desserts and drinks." %>
+<% content_for :head do %>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<%= stylesheet_link_tag 'pages_home', media: 'all' %>
+<% end %>
+
+<%= render 'shared/site_header',
+  wrapper_class: 'nav',
+  middle_class: 'links',
+  middle_links: [
+    { href: '/menu', label: 'Menu' },
+    { href: '#highlights', label: 'Highlights' },
+    { href: '#visit', label: 'Visit' }
+  ],
+  actions_style: 'display:flex; gap:10px; align-items:center;',
+  actions: [
+    { href: '/menu', label: 'View menu' },
+    { href: '/online-ordering', label: 'Order online', variant: :primary, icon: :spark }
+  ] %>
+
+<main>
+  <section class="hero">
+    <div class="wrap heroGrid">
+      <div>
+        <div class="chip" style="display:inline-flex; gap:10px; align-items:center;">
+          <span style="width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:0 0 0 4px rgba(0,229,255,.10);"></span>
+          Peruvian Delights • Ceviches • Saltados • Chaufas
+        </div>
+
+        <h1>Fresh ceviche.<br><span class="grad">Vibrant plates.</span><br>Stay Wavey.</h1>
+
+        <p class="sub">
+          A small family-owned Peruvian take out restaurant in Mississauga — fresh prep, bold flavour, and coastal vibes.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="/online-ordering"><span class="spark"></span>Order online</a>
+          <a class="btn" href="/menu">Browse full menu</a>
+          <a class="btn" href="#visit">Hours & location</a>
+        </div>
+      </div>
+
+      <aside class="heroCard">
+        <div class="heroImg" aria-hidden="true"></div>
+        <div class="overlay">
+          <h3>Ceviche Mixto</h3>
+          <p>(Tilapia, Shrimp and Seafood Mix) — $27</p>
+          <div class="chips">
+            <span class="chip">CEVICHES</span>
+            <span class="chip">Zesty</span>
+            <span class="chip">Coastal classic</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="highlights">
+    <div class="wrap">
+      <div class="title">
+        <h2>Menu highlights</h2>
+        <p>Same dishes + photos from your menu page — presented in a cleaner, more “premium” layout.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="img">
+            <img alt="Papa a la Huancaina"
+                 src="https://static.wixstatic.com/media/3b5d82_7e7db20b10284d37b3bd36069f34c539~mv2.jpg/v1/fill/w_1200%2Ch_800%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_auto/3b5d82_7e7db20b10284d37b3bd36069f34c539~mv2.jpg">
+          </div>
+          <div class="body">
+            <div class="row"><h3>Papa a la Huancaina</h3><div class="price">$13.00</div></div>
+            <p>(Boiled potatoes covered in a Creamy Per(Jvian Yellow pepper and Cheese Sauce topped w/ Boiled Eggs)</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img">
+            <img alt="Lomo Saltado"
+                 src="https://static.wixstatic.com/media/3b5d82_ff5b7ba7363645f0b5e2339867205918~mv2.jpg/v1/fill/w_1200%2Ch_1200%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_auto/3b5d82_ff5b7ba7363645f0b5e2339867205918~mv2.jpg">
+          </div>
+          <div class="body">
+            <div class="row"><h3>Lomo Saltado</h3><div class="price">$28</div></div>
+            <p>(Beef Tenderloin Stir Fried with Tomatoes. Onions and Fries)</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="img">
+            <img alt="Arroz Chaufa de Pollo"
+                 src="https://static.wixstatic.com/media/3b5d82_dc8496e228824632845115d2c611902d~mv2.jpg/v1/fill/w_1200%2Ch_1200%2Cal_c%2Cq_90%2Cusm_0.66_1.00_0.01%2Cenc_auto/3b5d82_dc8496e228824632845115d2c611902d~mv2.jpg">
+          </div>
+          <div class="body">
+            <div class="row"><h3>Arroz Chaufa de Pollo</h3><div class="price">$22</div></div>
+            <p>(Peruvian Chicken Fried Rice)</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <div class="banner">
+        <div>
+          <h3>Ready to order?</h3>
+          <p>Jump into online ordering (Pickup / Delivery) or browse the full Peruvian Delights menu.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="/online-ordering"><span class="spark"></span>Order online</a>
+          <a class="btn" href="/menu">View menu</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%= render 'shared/site_footer' %>
