@@ -8,8 +8,8 @@ Rails app for the Wavey Ceviches website with:
 
 ## Stack
 
-- Ruby `2.6.x` (current local scaffold used `2.6.10`)
-- Rails `6.0.3.1`
+- Ruby `3.3.x` (pinned to `3.3.6`)
+- Rails `7.0.x`
 - Puma web server
 
 Ruby is pinned in:
@@ -62,12 +62,19 @@ Typical environment variables:
 
 Ruby version note:
 
-- Use Ruby `2.6.10` to match this project.
-- If your host no longer supports Ruby `2.6`, upgrade Rails/Ruby before deploying.
+- Use Ruby `3.3.6` to match this project.
+- After switching Ruby, run `bundle install` (or `bundle update rails puma`) to regenerate `Gemfile.lock`.
+
+## Rails 7 Upgrade Notes
+
+- This project uses the Rails asset pipeline (`sprockets-rails`) for CSS/images.
+- `webpacker` and `turbolinks` were removed to simplify Rails 7 compatibility.
+- The current pages use plain JS in views and do not require a JS bundler.
+- If you later want Hotwire, add `turbo-rails` and `stimulus-rails`.
 
 ## Important Note About Credentials
 
-The initial scaffold in this environment failed during `credentials.yml.enc` generation due a local OpenSSL issue. The app itself was generated and the pages are present, but you may want to generate credentials on your machine before deploying:
+The initial scaffold in this environment failed during `credentials.yml.enc` generation due a local OpenSSL issue (on the original local Ruby setup). The app itself was generated and the pages are present, but you may want to generate credentials on your machine before deploying:
 
 ```bash
 bin/rails credentials:edit
